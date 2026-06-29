@@ -233,7 +233,16 @@
     .side .brandcard,
     .side #score-card { grid-column: 1 / -1; }
 
-    .touch { display: flex; }
+    /* 3-column grid => row 1: left / rotate / right,
+       row 2: soft-drop / hard-drop / hold. */
+    .touch {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      width: 100%;
+      margin-top: 12px;
+    }
+    .touch button { width: auto; }
   }
 
   @media (max-width: 380px) {
