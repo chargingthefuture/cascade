@@ -207,32 +207,34 @@
 
     .game { flex-direction: column; align-items: center; gap: 14px; width: 100%; }
 
-    /* Scale the board to the viewport height while keeping its 1:2 ratio.
-       width is derived from height by the canvas's intrinsic aspect ratio. */
-    .board-wrap { width: auto; max-width: 100%; }
+    /* Frame hugs the board (no dead space); board scales to the viewport
+       height while keeping its locked 1:2 ratio (width = height / 2). */
+    .board-wrap { width: fit-content; max-width: 100%; margin: 0 auto; padding: 8px; }
     canvas#board {
-      height: min(56vh, 90vw, 600px);
-      width: min(28vh, 45vw, 300px);
-      max-width: 100%;
+      height: min(60vh, 168vw, 600px);
+      width: min(30vh, 84vw, 300px);
       margin: 0 auto;
     }
 
+    /* Desktop-only keyboard controls card is hidden on touch screens. */
+    #controls-card { display: none; }
+
     .side {
       width: 100%;
-      max-width: 380px;
+      max-width: 420px;
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 12px;
     }
+    /* Full-width header so the CASCADE title always fits and never clips. */
     .side .brandcard,
     .side #score-card { grid-column: 1 / -1; }
-    #controls-card { display: none; }
 
     .touch { display: flex; }
   }
 
   @media (max-width: 380px) {
-    canvas#board { height: min(52vh, 90vw, 600px); width: min(26vh, 45vw, 300px); }
+    canvas#board { height: min(56vh, 168vw, 600px); width: min(28vh, 84vw, 300px); }
     .touch button { width: 48px; height: 46px; font-size: 18px; }
   }
 </style>
